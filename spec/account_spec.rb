@@ -15,11 +15,11 @@ describe Account do
     expect { @account.withdraw(amount: -100, date: '08-04-2019') }.to raise_error 'Cannot withdraw negative amounts!'
   end
 
-  it 'stores a date along with the amount in its transcation log' do
+  it 'creates a new transaction for deposits and withdrawals' do
     @account.deposit(amount: 50, date: '08-04-2019')
-    expect(@account.transactions.any? { |trn| trn[:date] = '08-04-2019' }).to be true
-    @account.withdraw(amount: 50, date: '09-04-2019')
-    expect(@account.transactions.any? { |trn| trn[:date] = '09-04-2019' }).to be true
+    expect(@account.transactions[0]).to be_a Transaction
+    @account.withdraw(amount: 50, date: '08-04-2019')
+    expect(@account.transactions[1]).to be_a Transaction
   end
 
   context '#deposit' do
