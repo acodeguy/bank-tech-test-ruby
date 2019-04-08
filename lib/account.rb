@@ -22,6 +22,6 @@ class Account
   def withdraw(amount:, date:)
     raise 'Cannot withdraw negative amounts!' unless amount.positive?
     @balance -= amount
-    @transactions.push({date => amount})
+    @transactions.push({date => "#{-amount}"})
   end
 end

@@ -18,6 +18,8 @@ describe Account do
   it 'stores a date along with the amount in its transcation log' do
     @account.deposit(amount: 50, date: '08-04-2019')
     expect(@account.transactions.any? { |trn| trn['08-04-2019'] }).to be true
+    @account.withdraw(amount: 50, date: '09-04-2019')
+    expect(@account.transactions.any? { |trn| trn['09-04-2019'] }).to be true
   end
 
   context '#deposit' do
