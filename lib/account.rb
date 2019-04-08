@@ -18,4 +18,8 @@ class Account
     @balance -= amount
     @transactions.push(Transaction.new(date: date, amount: amount, type: :debit, balance: @balance))
   end
+
+  def statement
+    Statement.new(@transactions)
+  end
 end

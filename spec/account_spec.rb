@@ -22,6 +22,10 @@ describe Account do
     expect(@account.transactions[1]).to be_a Transaction
   end
 
+  it 'can generate a statement' do
+    expect(@account.statement).to be_a Statement
+  end
+
   context '#deposit' do
     it 'incresses its balance by the deposited amount' do
       @account.deposit(amount: 100, date: '08-04-2019')
