@@ -7,13 +7,13 @@ class Account
     @transactions = []
   end
 
-  def deposit(amount:, date:)
+  def deposit(amount:, date: Date.today)
     raise 'Cannot deposit negative amounts!' unless amount.positive?
     @balance += amount
     @transactions.push(Transaction.new(date: date, amount: amount, type: :credit, balance: @balance))
   end
 
-  def withdraw(amount:, date:)
+  def withdraw(amount:, date: Date.today)
     raise 'Cannot withdraw negative amounts!' unless amount.positive?
     @balance -= amount
     @transactions.push(Transaction.new(date: date, amount: amount, type: :debit, balance: @balance))

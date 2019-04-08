@@ -1,4 +1,5 @@
 require './lib/account'
+require 'date'
 
 describe Account do
 
@@ -11,14 +12,14 @@ describe Account do
   end
 
   it 'does not accept negative numbers' do
-    expect { @account.deposit(amount: -100, date: '08-04-2019') }.to raise_error 'Cannot deposit negative amounts!'
-    expect { @account.withdraw(amount: -100, date: '08-04-2019') }.to raise_error 'Cannot withdraw negative amounts!'
+    expect { @account.deposit(amount: -100, date: Date.today) }.to raise_error 'Cannot deposit negative amounts!'
+    expect { @account.withdraw(amount: -100, date: Date.today) }.to raise_error 'Cannot withdraw negative amounts!'
   end
 
   it 'creates a new transaction for deposits and withdrawals' do
-    @account.deposit(amount: 50, date: '08-04-2019')
+    @account.deposit(amount: 50, date: Date.today)
     expect(@account.transactions[0]).to be_a Transaction
-    @account.withdraw(amount: 50, date: '08-04-2019')
+    @account.withdraw(amount: 50, date: Date.today)
     expect(@account.transactions[1]).to be_a Transaction
   end
 
@@ -28,14 +29,14 @@ describe Account do
 
   context '#deposit' do
     it 'incresses its balance by the deposited amount' do
-      @account.deposit(amount: 100, date: '08-04-2019')
+      @account.deposit(amount: 100, date: Date.today)
       expect(@account.balance).to eq 100
     end
   end
 
   context '#withdraw' do
     it 'decreases its balance by the withdrawn amount' do
-      @account.withdraw(amount: 50, date: '08-04-2019')
+      @account.withdraw(amount: 50, date: Date.today)
       expect(@account.balance).to eq -50
     end
   end
