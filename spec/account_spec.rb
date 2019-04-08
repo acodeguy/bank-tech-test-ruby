@@ -26,4 +26,11 @@ describe Account do
       expect(@account.balance).to eq 100
     end
   end
+
+  context '#withdraw' do
+    it 'decreases its balance by the withdrawn amount' do
+      @account.withdraw(amount: 50, date: '08-04-2019')
+      expect(@account.balance).to eq -50
+    end
+  end
 end
