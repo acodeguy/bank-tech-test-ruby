@@ -11,30 +11,28 @@ describe Account do
     expect(@account.balance).to eq 0
   end
 
-  it 'does not accept negative numbers' do
-    expect { @account.deposit(amount: -100, date: Date.today) }.to raise_error 'Cannot deposit negative amounts!'
-    expect { @account.withdraw(amount: -100, date: Date.today) }.to raise_error 'Cannot withdraw negative amounts!'
+  context '#transact' do
+    it 'does not accept negative amounts' do
+      expect { @account.transact(type: :credit, amount: -100) }.to raise_error 'Cannot deposit negative amounts!'
+      expect { @account.transact(type: :debit, amount: -100) }.to raise_error 'Cannot withdraw negative amounts!'
+    end
+
+    it 'decreases the balance by the withdrawn amount' do
+      @account.transact(type: :debit, amount: 100)
+      expect(@account.balance).to eq -100
+    end
+
+    it 'increases the balance by the deposited amount' do
+      @account.transact(type: :credit, amount: 50)
+      expect(@account.balance).to eq 50
+    end
   end
 
   it 'creates a new transaction for deposits and withdrawals' do
-    @account.deposit(amount: 50, date: Date.today)
+    @account.transact(type: :credit, amount: 50)
     expect(@account.transaction_log.items[0]).to be_a Transaction
-    @account.withdraw(amount: 50, date: Date.today)
+    @account.transact(type: :debit, amount: 50, date: Date.today)
     expect(@account.transaction_log.items[1]).to be_a Transaction
     expect(@account.transaction_log).to be_a TransactionLog
-  end
-
-  context '#deposit' do
-    it 'incresses its balance by the deposited amount' do
-      @account.deposit(amount: 100, date: Date.today)
-      expect(@account.balance).to eq 100
-    end
-  end
-
-  context '#withdraw' do
-    it 'decreases its balance by the withdrawn amount' do
-      @account.withdraw(amount: 50, date: Date.today)
-      expect(@account.balance).to eq -50
-    end
   end
 end

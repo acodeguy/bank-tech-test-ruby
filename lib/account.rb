@@ -7,16 +7,16 @@ class Account
     @transaction_log = transaction_log
   end
 
-  def deposit(amount:, date: Date.today)
-    raise 'Cannot deposit negative amounts!' unless amount.positive?
-    @balance += amount
-    @transaction_log.add_item(Transaction.new(date: date, amount: amount, type: :credit, balance: @balance))
-  end
-
-  def withdraw(amount:, date: Date.today)
-    raise 'Cannot withdraw negative amounts!' unless amount.positive?
-    @balance -= amount
-    @transaction_log.add_item(Transaction.new(date: date, amount: amount, type: :debit, balance: @balance))
+  def transact(type:, date: Date.today, amount:)
+    case type
+    when :credit
+      raise 'Cannot deposit negative amounts!' unless amount.positive?
+      @balance += amount
+    when :debit
+      raise 'Cannot withdraw negative amounts!' unless amount.positive?
+      @balance -= amount
+    end
+    @transaction_log.add_item(Transaction.new(date: date, amount: amount, type: type, balance: @balance))
   end
 
   def statement
