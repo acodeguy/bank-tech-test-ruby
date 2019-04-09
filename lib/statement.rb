@@ -1,5 +1,7 @@
 class Statement
 
+  attr_reader :statement
+
   def initialize(transaction_log = TransactionLog.new)
     @statement =  ['date || credit || debit || balance']
     @transaction_log = transaction_log

@@ -20,6 +20,8 @@ class Account
   end
 
   def statement
-    Statement.new(@transaction_log)
+    Statement.new(@transaction_log).print_out.each do |line|
+      puts line
+    end
   end
 end
