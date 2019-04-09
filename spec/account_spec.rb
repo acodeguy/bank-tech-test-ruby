@@ -18,9 +18,10 @@ describe Account do
 
   it 'creates a new transaction for deposits and withdrawals' do
     @account.deposit(amount: 50, date: Date.today)
-    expect(@account.transactions[0]).to be_a Transaction
+    expect(@account.transaction_log.items[0]).to be_a Transaction
     @account.withdraw(amount: 50, date: Date.today)
-    expect(@account.transactions[1]).to be_a Transaction
+    expect(@account.transaction_log.items[1]).to be_a Transaction
+    expect(@account.transaction_log).to be_a TransactionLog
   end
 
   it 'can generate a statement' do
