@@ -1,6 +1,7 @@
 # Bank Tech Test
+Create a REPL/JS Console app that simulates a bank account with common actions like deposits, withdrawals and statements
 
-# Using this Code
+## Using this Code
 Run the following commands to get started with this code:
 
 1. Clone the repo:
@@ -15,7 +16,7 @@ cd bank-tech-test-ruby
 ```
 bundle install
 ```
-4. RUn the code in IRB:
+4. Run the code in IRB:
 ```
 irb -r ./lib/account.rb -r ./lib/statement.rb -r ./lib/transaction.rb -r ./lib/transaction_log.rb
 ```
@@ -35,19 +36,51 @@ date || credit || debit || balance
 2.5.0 :010 > 
 ```
 
-# User Stories
+## Requirements
 
-# Acceptance criteria
+You should be able to interact with your code via a REPL like IRB or the JavaScript console. (You don't need to implement a command line interface that takes input from STDIN.)
+Deposits, withdrawal.
+Account statement (date, amount, balance) printing.
+Data can be kept in memory (it doesn't need to be stored to a database or anything).
+
+## User Stories
 ```
-Given a client makes a deposit of 1000 on 10-01-2012
-And a deposit of 2000 on 13-01-2012
-And a withdrawal of 500 on 14-01-2012
+As a customer
+So that I know how much money I have
+I want to be able to check my balance
+```
+```
+As a customer
+So that I can put money into my account
+I want to be able to deposit money into my account
+```
+```
+As a customer
+So that I can take my out of my account
+I want to be able to withdraw money from my account
+```
+```
+As a customer
+So that I can see my past transactions
+I want to be able to print an account statement
+```
+
+## Acceptance criteria
+```
+Given a customer makes a deposit of 1,000 on 10/01/2012
+And a deposit of 2,000 on 13/01/2012
+And a withdrawal of 500 on 14/01/2012
 When she prints her bank statement
 Then she would see
 ```
 ```
 date || credit || debit || balance
-14/01/2012 || || 500.00 || 2500.00
-13/01/2012 || 2000.00|| || 3000.00
-10/01/2012 || 1000.00|| || 1000.00
+14/01/2012 || || 500.00 || 2,500.00
+13/01/2012 || 2,000.00|| || 3,000.00
+10/01/2012 || 1,000.00|| || 1,000.00
 ```
+
+## Enhancements I'd Make
+
+1. Use commas as thousands separator on statement
+2. Make it interactive rather than REPL
