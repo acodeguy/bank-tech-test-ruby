@@ -2,7 +2,7 @@ require './lib/statement'
 
 describe Statement do
 
-  it 'prints a statement with al lof its transactions' do
+  it 'prints a statement with all of its transactions' do
     transaction_log = TransactionLog.new
     transaction_log.add_item(Transaction.new(date: Date.new(2012,01,10), amount: 1000, type: :credit, balance: 1000))
     transaction_log.add_item(Transaction.new(date: Date.new(2012,01,13), amount: 2000, type: :credit, balance: 3000))
