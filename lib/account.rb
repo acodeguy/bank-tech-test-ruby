@@ -1,6 +1,6 @@
-# the account, owned by one single user
 require 'date'
 
+# the account, owned by one single user
 class Account
   attr_reader :balance, :transaction_log
 
