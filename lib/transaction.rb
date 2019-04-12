@@ -1,5 +1,5 @@
+# A single transaction made on an account
 class Transaction
-
   attr_reader :date, :amount, :type, :balance
 
   def initialize(date: Date.today, amount:, type:, balance:)

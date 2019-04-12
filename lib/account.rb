@@ -1,7 +1,7 @@
+# the account, owned by one single user
 require 'date'
 
 class Account
-
   attr_reader :balance, :transaction_log
 
   def initialize(transaction_log = TransactionLog.new)
@@ -13,12 +13,15 @@ class Account
     case type
     when :credit
       raise 'Cannot deposit negative amounts!' unless amount.positive?
+
       @balance += amount
     when :debit
       raise 'Cannot withdraw negative amounts!' unless amount.positive?
+
       @balance -= amount
     end
-    @transaction_log.add_item(Transaction.new(date: date, amount: amount, type: type, balance: @balance))
+    transaction = Transaction.new(date: date, amount: amount, type: type, balance: @balance)
+    @transaction_log.add_item(transaction)
   end
 
   def statement

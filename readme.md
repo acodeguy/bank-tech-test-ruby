@@ -65,6 +65,11 @@ So that I can see my past transactions
 I want to be able to print an account statement
 ```
 
+## Code Quality
+
+- Tests were written with RSpec, passing with 98% coverage
+- Code was linted with Rubocop
+
 ## Acceptance criteria
 ```
 Given a customer makes a deposit of 1,000 on 10/01/2012
