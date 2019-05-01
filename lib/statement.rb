@@ -9,8 +9,10 @@ class Statement
 
   def print_out
     @transaction_log.items.reverse_each do |t|
-      @statement.push("#{format_date(t.date)} || #{format_number(t.amount)} || || #{format_number(t.balance)}") if t.type == :credit
-      @statement.push("#{format_date(t.date)} || || #{format_number(t.amount)} || #{format_number(t.balance)}") if t.type == :debit
+      credit_line = "#{format_date(t.date)} || #{format_number(t.amount)} || || #{format_number(t.balance)}"
+      @statement.push(credit_line) if t.type == :credit
+      debit_line = "#{format_date(t.date)} || || #{format_number(t.amount)} || #{format_number(t.balance)}"
+      @statement.push(debit_line) if t.type == :debit
     end
     @statement
   end
