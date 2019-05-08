@@ -24,8 +24,8 @@ class Account
     @transaction_log.add_item(transaction)
   end
 
-  def statement
-    Statement.new(@transaction_log).print_out.each do |line|
+  def statement(statement = Statement.new(@transaction_log))
+    statement.print_out.each do |line|
       puts line
     end
   end
