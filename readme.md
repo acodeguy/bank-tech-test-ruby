@@ -85,6 +85,16 @@ date || credit || debit || balance
 10/01/2012 || 1,000.00|| || 1,000.00
 ```
 
+## Screenshots
+![screenshot of the app running](images/screenshot.jpg)
+
+## Approach
+From the outset I knew that one class was not going to cover this program properly, so I started with feature tests in IRB for how I wanted the program to behave then transferred these failing features to RSpec tests which drove the development along.
+
+I was guilty of writing the tests tightly coupled to external units, however I have since re-visited this project and used test doubles to keep the tests isolated.
+
+I've used dependency injection where possible to remove reliance on lower-level modules and keep the code as readable, short and easy to change to possible.
+
 ## Enhancements I'd Make
 
 1. Use commas as thousands separator on statement
