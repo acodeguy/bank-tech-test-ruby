@@ -9,7 +9,7 @@ class Account
     @transaction_log = transaction_log
   end
 
-  def transact(type:, date: Date.today, amount:)
+  def transact(type:, date: Date.today, amount:, transaction: Transaction.new)
     case type
     when :credit
       raise 'Cannot deposit negative amounts!' unless amount.positive?
@@ -20,7 +20,7 @@ class Account
 
       @balance -= amount
     end
-    transaction = Transaction.new(date: date, amount: amount, type: type, balance: @balance)
+    transaction.record(date: date, amount: amount, type: type, balance: @balance)
     @transaction_log.add_item(transaction)
   end
 
