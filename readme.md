@@ -65,11 +65,6 @@ So that I can see my past transactions
 I want to be able to print an account statement
 ```
 
-## Code Quality
-
-- Tests were written with RSpec, passing with 98% coverage
-- Code was linted with Rubocop
-
 ## Acceptance criteria
 ```
 Given a customer makes a deposit of 1,000 on 10/01/2012
@@ -84,6 +79,11 @@ date || credit || debit || balance
 13/01/2012 || 2,000.00|| || 3,000.00
 10/01/2012 || 1,000.00|| || 1,000.00
 ```
+## Testing
+Tests were written with RSpec, passing with 98% coverage 
+
+## Code Quality
+Code was linted with Rubocop
 
 ## Screenshots
 ![screenshot of the app running](images/screenshot.jpg)
